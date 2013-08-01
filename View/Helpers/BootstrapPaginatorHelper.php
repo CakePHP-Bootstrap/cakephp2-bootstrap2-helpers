@@ -31,47 +31,91 @@ class BootstrapPaginatorHelper extends PaginatorHelper {
         return $default ;
     }
     
+    /**
+        
+        Get link to the first pagination page.
+        
+        @param $title The link text
+        @param $options Options for link
+        @param $disabledtitle Title when link is disabled
+        @param $disabledOptions Options for link when it's disabled
+      
+     **/
     public function first ($title = '<<', $options = array(), $disabledTitle = null, $disabledOptions = array()) {
-        $options['tag'] = 'li' ;
-        $disabledOptions = array_merge(array('class' => 'disabled', 'disabledTag' => 'a'),
+        $options = array_merge(array('tag' => 'li'), $options) ;
+        $disabledOptions = array_merge(array('tag' => 'li', 'class' => 'disabled', 'disabledTag' => 'a'),
             $disabledOptions) ;
-        $disabledOptions['tag'] = 'li' ;
         return parent::first($title, $options, $disabledTitle, $disabledOptions) ;        
     }
-
+    
+    /**
+        
+        Get link to the previous pagination page.
+        
+        @param $title The link text
+        @param $options Options for link
+        @param $disabledtitle Title when link is disabled
+        @param $disabledOptions Options for link when it's disabled
+      
+     **/
     public function prev ($title = '<', $options = array(), $disabledTitle = null, $disabledOptions = array()) {
-        $options['tag'] = 'li' ;
-        $disabledOptions = array_merge(array('class' => 'disabled', 'disabledTag' => 'a'),
+        $options = array_merge(array('tag' => 'li'), $options) ;
+        $disabledOptions = array_merge(array('tag' => 'li', 'class' => 'disabled', 'disabledTag' => 'a'),
             $disabledOptions) ;
-        $disabledOptions['tag'] = 'li' ;
         return parent::prev($title, $options, $disabledTitle, $disabledOptions) ;        
     }
     
+    /**
+        
+        Get link to the next pagination page.
+        
+        @param $title The link text
+        @param $options Options for link
+        @param $disabledtitle Title when link is disabled
+        @param $disabledOptions Options for link when it's disabled
+      
+     **/
     public function next ($title = '>', $options = array(), $disabledTitle = null, $disabledOptions = array()) {
-        $options['tag'] = 'li' ;
-        $disabledOptions = array_merge(array('class' => 'disabled', 'disabledTag' => 'a'),
+        $options = array_merge(array('tag' => 'li'), $options) ;
+        $disabledOptions = array_merge(array('tag' => 'li', 'class' => 'disabled', 'disabledTag' => 'a'),
             $disabledOptions) ;
-        $disabledOptions['tag'] = 'li' ;
         return parent::next($title, $options, $disabledTitle, $disabledOptions) ;        
     }
     
+    /**
+        
+        Get link to the last pagination page.
+        
+        @param $title The link text
+        @param $options Options for link
+        @param $disabledtitle Title when link is disabled
+        @param $disabledOptions Options for link when it's disabled
+      
+     **/
     public function last ($title = '>>', $options = array(), $disabledTitle = null, $disabledOptions = array()) {
-        $options['tag'] = 'li' ;
-        $disabledOptions = array_merge(array('class' => 'disabled', 'disabledTag' => 'a'),
+        $options = array_merge(array('tag' => 'li'), $options) ;
+        $disabledOptions = array_merge(array('tag' => 'li', 'class' => 'disabled', 'disabledTag' => 'a'),
             $disabledOptions) ;
-        $disabledOptions['tag'] = 'li' ;
         return parent::last($title, $options, $disabledTitle, $disabledOptions) ;        
     }
     
+        
+    /**
+        
+        Get pagination link list.
+        
+        @param $options Options for link element
+      
+     **/
     public function numbers ($options = array()) {
     
         $default = array(
+            'tag' => 'li',
             'currentTag' => 'a', 
             'separator' => '', 
             'currentClass' => 'active', 
             'disabledTag' => 'a') ;
         $options = array_merge($default, $options) ;
-        $options['tag'] = 'li' ;
           
         $options['before'] = '<div class="pagination"><ul>' ;
         $options['after'] = '</ul></div>' ;
