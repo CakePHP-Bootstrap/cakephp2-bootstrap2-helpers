@@ -24,67 +24,13 @@ This is the subclass of HtmlHelper, with 1 redefinition of method and 3 new meth
 Function now returns a bootstrap style breadcrumbs: http://getbootstrap.com/2.3.2/components.html#breadcrumbs
   
 <h3>alert</h3>
-Function which returns a bootstrap alert message: http://getbootstrap.com/2.3.2/components.html#alerts
-```
-/**
-    
-    Create an Twitter Bootstrap style alert block, containing text.
-    
-    @param $text The alert text
-    @param $options Options that will be passed to Html::div method
-    
-    Available BootstrapHtml options:
-        - block: boolean, specify if alert should have 'alert-block' class
-        - type: string, type of alert (default, error, info, success)
-
-**/
-BoostrapHtmlHelper::alert ($text, $options = array())
-```  
+Function which returns a bootstrap alert message: http://getbootstrap.com/2.3.2/components.html#alerts 
 
 <h3>icon</h3> 
-Function which returns a boostrap icon
-```
-/**
-    
-    Create a Twitter Bootstrap icon.
-    
-    @param $icon The type of the icon (search, pencil, etc.)
-    @param $color The color of the icon (black or white)
-
-**/
-BootstrapHtmlHelper::icon ($icon, $color = 'black')
-```
+Function which returns a boostrap icon.
 
 <h3>progress</h3>
-Function which returns a boostrap progress bar
-```
-/**
-
-    Create an Twitter Bootstrap style progress bar.
-    
-    @param $widths 
-        - The width (in %) of the bar
-        - An array of bar, with width and type (info, danger, success, warning) specified for each bar
-    @param $options Options that will be passed to Html::div method (only for main div)
-    
-    Available BootstrapHtml options:
-        - striped: boolean, specify if progress bar should be striped
-        - active: boolean, specify if progress bar should be active
-        
-    Ex: 
-        $this->BoostrapHtml->progress(array(
-            array(
-                'width' => 10
-            ),
-            array(
-                'width' => 20,
-                'type' => 'danger'
-            )
-        )) ;
-
-**/
-BootstrapHtmlHelper::progress ($widths, $options = array()) 
-```
+Function which returns a boostrap progress bar.
 
 Copyright and license
 =====================
