@@ -59,7 +59,7 @@ class BootstrapFormHelper extends FormHelper {
         @return The HTML tags corresponding to the openning of the form
     
     **/
-	public function create($model = null, $options = array()) {
+    public function create($model = null, $options = array()) {
         $this->horizontal = $this->_extractOption('horizontal', $options, false);
 		unset($options['horizontal']);
         $this->search = $this->_extractOption('search', $options, false) ;

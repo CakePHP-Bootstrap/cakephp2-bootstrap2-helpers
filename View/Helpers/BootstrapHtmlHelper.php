@@ -58,7 +58,7 @@ class BootstrapHtmlHelper extends HtmlHelper {
     
     /**
     
-        Create an Twitter Bootstrap style alert block, containing text.
+        Create a Twitter Bootstrap style alert block, containing text.
         
         @param $text The alert text
         @param $options Options that will be passed to Html::div method
@@ -88,7 +88,7 @@ class BootstrapHtmlHelper extends HtmlHelper {
     
     /**
     
-        Create an Twitter Bootstrap style progress bar.
+        Create a Twitter Bootstrap style progress bar.
         
         @param $widths 
             - The width (in %) of the bar
