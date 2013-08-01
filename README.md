@@ -52,6 +52,55 @@ Two new methods:
 1. dropdownButton which allow you to create dropdown button (see documentation)
 2. searchForm which allow you to quickly create a search form (see documentation)
 
+A small example:
+```
+echo $this->BootstrapForm->create('', array()) ;
+echo $this->BootstrapForm->input('text', array(
+    'label' => 'Search... ',
+    'type' => 'text',
+    'prepend' => $this->BootstrapHtml->icon('search'),
+    'append' => array(
+            $this->BootstrapForm->dropdownButton(__('Action'), array(
+                $this->BootstrapHtml->link('Action 1', array()),
+                $this->BootstrapHtml->link('Action 2', array()),
+                'divider',
+                $this->BootstrapHtml->link('Action 3', array())
+            ))
+    ))) ;
+echo $this->BootstrapForm->end() ;
+
+/**
+    Will output: 
+
+    <form>
+        <div style="display:none;">
+            <input type="hidden" name="_method" value="POST">
+        </div>
+        <div class="control-group">
+            <label for="ArticleText" class="control-label">Search... </label>
+            <div class=" input-prepend input-append">
+                <span class="add-on"><i class="icon-search icon-black"></i></span>
+                <input name="data[Article][text]" type="text" id="ArticleText">
+                <div class="btn-group">
+                    <button data-toggle="dropdown" class="dropdown-toggle btn">
+                        Action
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action 1</a></li>
+                        <li><a href="#">Action 2</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Action 3</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </form>
+    
+**/
+
+```
+
 Copyright and license
 =====================
 
