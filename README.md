@@ -39,9 +39,52 @@ Function which returns a bootstrap alert message: http://getbootstrap.com/2.3.2/
 
 **/
 BoostrapHtmlHelper::alert ($text, $options = array())
-```   
-3. icon is a method which returns a boostrap icon
-4. progress is a method which returns a boostrap progress bar
+```  
+
+<h3>icon</h3> 
+Function which returns a boostrap icon
+```
+/**
+    
+    Create a Twitter Bootstrap icon.
+    
+    @param $icon The type of the icon (search, pencil, etc.)
+    @param $color The color of the icon (black or white)
+
+**/
+BootstrapHtmlHelper::icon ($icon, $color = 'black')
+```
+
+<h3>progress</h3>
+Function which returns a boostrap progress bar
+```
+/**
+
+    Create an Twitter Bootstrap style progress bar.
+    
+    @param $widths 
+        - The width (in %) of the bar
+        - An array of bar, with width and type (info, danger, success, warning) specified for each bar
+    @param $options Options that will be passed to Html::div method (only for main div)
+    
+    Available BootstrapHtml options:
+        - striped: boolean, specify if progress bar should be striped
+        - active: boolean, specify if progress bar should be active
+        
+    Ex: 
+        $this->BoostrapHtml->progress(array(
+            array(
+                'width' => 10
+            ),
+            array(
+                'width' => 20,
+                'type' => 'danger'
+            )
+        )) ;
+
+**/
+BootstrapHtmlHelper::progress ($widths, $options = array()) 
+```
 
 Copyright and license
 =====================
