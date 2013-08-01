@@ -32,6 +32,26 @@ Function which returns a boostrap icon.
 <h3>progress</h3>
 Function which returns a boostrap progress bar.
 
+BootstrapPaginatorHelper
+========================
+
+Currently this helper only redefines numbers, first, last, prev & next method of PaginatorHelper to create boostrap like pagination: http://getbootstrap.com/2.3.2/components.html#pagination
+
+BootstrapFormHelper
+===================
+
+This helper redefines the the most importants method of the FormHelper:
+
+1. BootstrapFormHelper::create now allows you to specify if you want a horizontal, inline or search form (see documentation)
+2. BootstrapFormHelper::input now allows you to prepend or append element to your input
+
+button, submit and end methods are redefined to add bootstrap btn style, and allow you to specify which button you want (by specifying "boostrap-size" and "boostrap-type" options).
+
+Two new methods:
+
+1. dropdownButton which allow you to create dropdown button (see documentation)
+2. searchForm which allow you to quickly create a search form (see documentation)
+
 Copyright and license
 =====================
 
