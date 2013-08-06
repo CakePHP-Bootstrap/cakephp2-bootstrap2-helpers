@@ -32,15 +32,15 @@ class BootstrapPaginatorHelper extends PaginatorHelper {
     }
     
     /**
-        
-        Get link to the first pagination page.
-        
-        @param $title The link text
-        @param $options Options for link
-        @param $disabledtitle Title when link is disabled
-        @param $disabledOptions Options for link when it's disabled
-      
-     **/
+     * 
+     * Get link to the first pagination page.
+     * 
+     * @param $title The link text
+     * @param $options Options for link
+     * @param $disabledtitle Title when link is disabled
+     * @param $disabledOptions Options for link when it's disabled
+     * 
+    **/
     public function first ($title = '<<', $options = array(), $disabledTitle = null, $disabledOptions = array()) {
         $options = array_merge(array('tag' => 'li'), $options) ;
         $disabledOptions = array_merge(array('tag' => 'li', 'class' => 'disabled', 'disabledTag' => 'a'),
@@ -49,15 +49,15 @@ class BootstrapPaginatorHelper extends PaginatorHelper {
     }
     
     /**
-        
-        Get link to the previous pagination page.
-        
-        @param $title The link text
-        @param $options Options for link
-        @param $disabledtitle Title when link is disabled
-        @param $disabledOptions Options for link when it's disabled
-      
-     **/
+     * 
+     * Get link to the previous pagination page.
+     * 
+     * @param $title The link text
+     * @param $options Options for link
+     * @param $disabledtitle Title when link is disabled
+     * @param $disabledOptions Options for link when it's disabled
+     * 
+    **/
     public function prev ($title = '<', $options = array(), $disabledTitle = null, $disabledOptions = array()) {
         $options = array_merge(array('tag' => 'li'), $options) ;
         $disabledOptions = array_merge(array('tag' => 'li', 'class' => 'disabled', 'disabledTag' => 'a'),
@@ -66,15 +66,15 @@ class BootstrapPaginatorHelper extends PaginatorHelper {
     }
     
     /**
-        
-        Get link to the next pagination page.
-        
-        @param $title The link text
-        @param $options Options for link
-        @param $disabledtitle Title when link is disabled
-        @param $disabledOptions Options for link when it's disabled
-      
-     **/
+     * 
+     * Get link to the next pagination page.
+     * 
+     * @param $title The link text
+     * @param $options Options for link
+     * @param $disabledtitle Title when link is disabled
+     * @param $disabledOptions Options for link when it's disabled
+     * 
+    **/
     public function next ($title = '>', $options = array(), $disabledTitle = null, $disabledOptions = array()) {
         $options = array_merge(array('tag' => 'li'), $options) ;
         $disabledOptions = array_merge(array('tag' => 'li', 'class' => 'disabled', 'disabledTag' => 'a'),
@@ -83,15 +83,15 @@ class BootstrapPaginatorHelper extends PaginatorHelper {
     }
     
     /**
-        
-        Get link to the last pagination page.
-        
-        @param $title The link text
-        @param $options Options for link
-        @param $disabledtitle Title when link is disabled
-        @param $disabledOptions Options for link when it's disabled
-      
-     **/
+     * 
+     * Get link to the last pagination page.
+     * 
+     * @param $title The link text
+     * @param $options Options for link
+     * @param $disabledtitle Title when link is disabled
+     * @param $disabledOptions Options for link when it's disabled
+     * 
+    **/
     public function last ($title = '>>', $options = array(), $disabledTitle = null, $disabledOptions = array()) {
         $options = array_merge(array('tag' => 'li'), $options) ;
         $disabledOptions = array_merge(array('tag' => 'li', 'class' => 'disabled', 'disabledTag' => 'a'),
@@ -101,12 +101,12 @@ class BootstrapPaginatorHelper extends PaginatorHelper {
     
         
     /**
-        
-        Get pagination link list.
-        
-        @param $options Options for link element
-      
-     **/
+     * 
+     * Get pagination link list.
+     * 
+     * @param $options Options for link element
+     *       
+    **/
     public function numbers ($options = array()) {
     
         $default = array(
