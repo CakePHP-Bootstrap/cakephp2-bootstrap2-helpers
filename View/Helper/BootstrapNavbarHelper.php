@@ -25,31 +25,6 @@ App::import('Routing', 'Router') ;
 
 class BootstrapNavbarHelper extends AppHelper {
 
-    /** How to use ? **/
-    
-    /** 
-    
-        create () ;
-            link () ;
-            link () ;
-            beginMenu () ;
-                link () ;
-                link () ;
-                beginMenu () ;
-                    link () ;
-                    divider () ;
-                    link () ;
-                endMenu () ;
-            endMenu () ;
-            link () ;
-            text () ;
-            link () ;
-        end () ;
-        
-        compile () ; // Only this call create and return the navbar
-        
-    **/
-
     public $helpers = array('Html') ;
     
     private $options = array() ;
@@ -79,7 +54,7 @@ class BootstrapNavbarHelper extends AppHelper {
      *  - responsive: false, true
      *  - inverse: false, true
      * 
-     **/
+    **/
     public function create ($options = array()) {
         $this->fixed = $this->_extractOption('fixed', $options, false) ;
         unset($options['fixed']) ;
@@ -102,7 +77,7 @@ class BootstrapNavbarHelper extends AppHelper {
      *      with responsive design (default false)
      * @param options Options passed to link method
      *     
-     **/
+    **/
     public function brand ($name, $url = '/', $collapse = false, $options = array()) {
         $this->brand = array(
             'text' => $name,
@@ -120,7 +95,7 @@ class BootstrapNavbarHelper extends AppHelper {
      *   - active (default auto)
      *   - pull (default auto)
      * 
-     **/
+    **/
     
     /**
      * 
@@ -130,7 +105,7 @@ class BootstrapNavbarHelper extends AppHelper {
      * @param url The link URL
      * @param options Options passed to link method (+ extra options, see above)
      *     
-     **/
+    **/
     public function link ($name, $url, $options = array()) {
         $value = array(
             'text' => $name,
@@ -143,7 +118,7 @@ class BootstrapNavbarHelper extends AppHelper {
      * 
      * Add a divider to the navbar or to a menu.
      * 
-     **/
+    **/
     public function divider ()) {
         $this->_addToCurrent('divider', array(), array()) ;
     }
@@ -158,7 +133,7 @@ class BootstrapNavbarHelper extends AppHelper {
      * Extra options:
      *  - wrap The HTML tag to use (default p)
      * 
-     **/
+    **/
     public function text ($text, $options = array()) {
         $tag = $this->_extractOption('wrap', $options, 'p') ;
         unset($options['wrap']) ;
@@ -178,7 +153,7 @@ class BootstrapNavbarHelper extends AppHelper {
      * @param url A URL for the menu (default null)
      * @param options Options passed to the tag method (+ extra options, see above)
      *   
-     **/
+    **/
     public function beginMenu ($name, $url = null, $options = array()) {
         $default = array(
             'type' => 'menu',
@@ -200,7 +175,7 @@ class BootstrapNavbarHelper extends AppHelper {
      * 
      * End a menu.
      * 
-     **/
+    **/
     public function endMenu () {
         if ($this->currentSubMenu !== null) {
             $this->currentMenu['menu'][] = $this->currentSubMenu ;
@@ -218,7 +193,7 @@ class BootstrapNavbarHelper extends AppHelper {
      * 
      * @param compile If true, compile the navbar and return
      *    
-     **/
+    **/
     public function end ($compile = false) {
     
         if ($compile) {
@@ -239,7 +214,7 @@ class BootstrapNavbarHelper extends AppHelper {
      *      disabled => disabled element
      * )
      * 
-     **/
+    **/
     private function compileNavBlock ($nav) {
         $inner = '' ;
         $class = '' ;
@@ -287,7 +262,7 @@ class BootstrapNavbarHelper extends AppHelper {
      *      disabled => disabled element
      * )
      * 
-     **/
+    **/
     private function compileMenu ($menu) {
         if ($menu['type'] === 'menu') {
             $button = $this->Html->link($menu['text'], $menu['url'] ? $menu['url'] : '#', array(
@@ -326,11 +301,11 @@ class BootstrapNavbarHelper extends AppHelper {
     }
     
     /**
-    
-        Compile and returns the current navbar.
-        
-        @return The navbar (HTML string)
-    
+     * 
+     * Compile and returns the current navbar.
+     * 
+     * @return The navbar (HTML string)
+     *     
     **/
     public function compile () {
         $htmls = array() ;
@@ -422,7 +397,7 @@ class BootstrapNavbarHelper extends AppHelper {
      * 
      * Extract options from $options, returning $default if $key is not found.
      * 
-     **/
+    **/
     private function _extractOption ($key, $options, $default = null) {
         if (isset($options[$key])) {
             return $options[$key] ;
@@ -434,7 +409,7 @@ class BootstrapNavbarHelper extends AppHelper {
      * 
      * Add $class class to $options and return it.
      * 
-     **/
+    **/
     private function _addClass ($options, $class) {
         if (!isset($options['class'])) {
             $options['class'] = $class ;
@@ -449,7 +424,7 @@ class BootstrapNavbarHelper extends AppHelper {
      * 
      * Extract navbar values from $options.
      * 
-     **/
+    **/
     private function _extractValue ($options) {
         $value = array () ;
         $value['pull'] = $this->_extractOption('pull', $options, 'auto') ;
@@ -466,7 +441,7 @@ class BootstrapNavbarHelper extends AppHelper {
      * 
      * Add navbar block to current nav (navs, dropdownMenu, hoverMenu).
      * 
-     **/
+    **/
     private function _addToCurrent ($type, $value, $options = array()) {
         $value = array_merge($this->_extractValue($options), $value) ;
         $value['type'] = $type ;
