@@ -106,7 +106,8 @@ BootstrapNavbarHelper
 
 A new helper to easily create navigation bar in bootstrap style (http://getbootstrap.com/2.3.2/components.html#navbar).
 
-The helper allow you to create navigation bar with brand link (with automatic active class), dropdown menu (and hover menu on dropdown), and other bootstrap stuff with custom options.
+The helper allow you to create navigation bars with brand block, links (with automatic active class), dropdown menus (and hover menu on dropdown), and other bootstrap stuff with custom options.
+All the boostrap navbars (fixed, fixed, inverse, static, responsive) are availables using options.
 
 Copyright and license
 =====================
