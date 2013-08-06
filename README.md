@@ -11,7 +11,7 @@ How to use?
 ===========
 
 Just add Helper files into your View/Helpers directory and load the helpers in you controller:
-```public $helpers = array('BoostrapHtml', 'BootstrapForm', 'BoostrapPaginator') ;```
+```public $helpers = array('BoostrapHtml', 'BootstrapForm', 'BoostrapPaginator', 'BootstrapNavbar') ;```
 
 I tried to keep CakePHP helpers style. You can find the documentation directly in the Helpers files.
 
@@ -100,6 +100,13 @@ echo $this->BootstrapForm->end() ;
 **/
 
 ```
+
+BootstrapNavbarHelper
+=====================
+
+A new helper to easily create navigation bar in bootstrap style (http://getbootstrap.com/2.3.2/components.html#navbar).
+
+The helper allow you to create navigation bar with brand link (with automatic active class), dropdown menu (and hover menu on dropdown), and other bootstrap stuff with custom options.
 
 Copyright and license
 =====================
