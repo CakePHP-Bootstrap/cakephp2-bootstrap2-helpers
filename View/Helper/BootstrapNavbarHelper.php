@@ -68,19 +68,18 @@ class BootstrapNavbarHelper extends AppHelper {
     private $navs = array () ;
     
     /**
-    
-        Create a new navbar.
-        
-        @param options Options to customize the bootstrap navbar
-        
-        Options:
-            - fixed: false, 'top', 'bottom'
-            - static: false, true (useless if fixed != false)
-            - responsive: false, true
-            - inverse: false, true
-            - options: array(), options for main navbar div
-    
-    **/
+     * 
+     * Create a new navbar.
+     * 
+     * @param options Options passed to tag method for outer navbar div
+     * 
+     * Extra options:
+     *  - fixed: false, 'top', 'bottom'
+     *  - static: false, true (useless if fixed != false)
+     *  - responsive: false, true
+     *  - inverse: false, true
+     * 
+     **/
     public function create ($options = array()) {
         $this->fixed = $this->_extractOption('fixed', $options, false) ;
         unset($options['fixed']) ;
@@ -94,16 +93,16 @@ class BootstrapNavbarHelper extends AppHelper {
     }
     
     /**
-    
-        Create the brand link of the navbar.
-        
-        @param name The brand link text
-        @param url The brand link URL (default '/')
-        @param collapse true if you want the brand to be collapsed 
-            with responsive design (default false)
-        @param options Options passed to link method
-    
-    **/
+     * 
+     * Create the brand link of the navbar.
+     * 
+     * @param name The brand link text
+     * @param url The brand link URL (default '/')
+     * @param collapse true if you want the brand to be collapsed 
+     *      with responsive design (default false)
+     * @param options Options passed to link method
+     *     
+     **/
     public function brand ($name, $url = '/', $collapse = false, $options = array()) {
         $this->brand = array(
             'text' => $name,
@@ -114,10 +113,24 @@ class BootstrapNavbarHelper extends AppHelper {
     }
     
     /**
+     * 
+     * Functions below accept following options:
+     * 
+     *   - disabled (default false)
+     *   - active (default auto)
+     *   - pull (default auto)
+     * 
+     **/
     
-        Create a new link
-    
-    **/
+    /**
+     * 
+     * Add a link to the navbar or to a menu.
+     * 
+     * @param name The link text
+     * @param url The link URL
+     * @param options Options passed to link method (+ extra options, see above)
+     *     
+     **/
     public function link ($name, $url, $options = array()) {
         $value = array(
             'text' => $name,
@@ -126,10 +139,26 @@ class BootstrapNavbarHelper extends AppHelper {
         $this->_addToCurrent('link', $value, $options) ;
     }
     
-    public function divider ($options = array()) {
-        $this->_addToCurrent('divider', array(), $options) ;
+    /**
+     * 
+     * Add a divider to the navbar or to a menu.
+     * 
+     **/
+    public function divider ()) {
+        $this->_addToCurrent('divider', array(), array()) ;
     }
 
+    /**
+     * 
+     * Add a text to the navbar or to a menu.
+     * 
+     * @param text The text message
+     * @param options Options passed to the tag method (+ extra options, see above)
+     * 
+     * Extra options:
+     *  - wrap The HTML tag to use (default p)
+     * 
+     **/
     public function text ($text, $options = array()) {
         $tag = $this->_extractOption('wrap', $options, 'p') ;
         unset($options['wrap']) ;
@@ -141,19 +170,15 @@ class BootstrapNavbarHelper extends AppHelper {
     }
     
     /**
-    
-        Start a new menu, 2 levels: If not in submenu, create a dropdown menu,
-        oterwize create hover menu.
-        
-        @param name The name of the menu
-        @param url A URL for the menu (default null)
-        @param options Options for the menu
-        
-        Options:
-            - pull: 'left', 'right' (default 'left')
-            - options: array, options for the ul div
-       
-    **/
+     * 
+     * Start a new menu, 2 levels: If not in submenu, create a dropdown menu,
+     * oterwize create hover menu.
+     * 
+     * @param name The name of the menu
+     * @param url A URL for the menu (default null)
+     * @param options Options passed to the tag method (+ extra options, see above)
+     *   
+     **/
     public function beginMenu ($name, $url = null, $options = array()) {
         $default = array(
             'type' => 'menu',
@@ -171,6 +196,11 @@ class BootstrapNavbarHelper extends AppHelper {
         }
     }
     
+    /**
+     * 
+     * End a menu.
+     * 
+     **/
     public function endMenu () {
         if ($this->currentSubMenu !== null) {
             $this->currentMenu['menu'][] = $this->currentSubMenu ;
@@ -183,12 +213,12 @@ class BootstrapNavbarHelper extends AppHelper {
     }
 
     /**
-        
-        End a navbar.
-        
-        @param compile If true, compile the navbar and return
-    
-    **/
+     * 
+     * End a navbar.
+     * 
+     * @param compile If true, compile the navbar and return
+     *    
+     **/
     public function end ($compile = false) {
     
         if ($compile) {
@@ -196,6 +226,20 @@ class BootstrapNavbarHelper extends AppHelper {
         }
     }
     
+    /**
+     * 
+     * Compile a navigation block.
+     * 
+     * @param nav Array (type, active, pull, disabled, options, ...)
+     * 
+     * @return array(
+     *      inner => Inner HTML for li tag
+     *      class => Extra class for li tag
+     *      active => Active element
+     *      disabled => disabled element
+     * )
+     * 
+     **/
     private function compileNavBlock ($nav) {
         $inner = '' ;
         $class = '' ;
@@ -230,6 +274,20 @@ class BootstrapNavbarHelper extends AppHelper {
         ) ;
     }
     
+    /**
+     * 
+     * Compile a menu.
+     * 
+     * @param menu array(type, pull, url, text, menu)
+     * 
+     * @return array(
+     *      inner => Inner HTML for li tag
+     *      class => Extra class for li tag
+     *      active => Active element
+     *      disabled => disabled element
+     * )
+     * 
+     **/
     private function compileMenu ($menu) {
         if ($menu['type'] === 'menu') {
             $button = $this->Html->link($menu['text'], $menu['url'] ? $menu['url'] : '#', array(
@@ -270,6 +328,8 @@ class BootstrapNavbarHelper extends AppHelper {
     /**
     
         Compile and returns the current navbar.
+        
+        @return The navbar (HTML string)
     
     **/
     public function compile () {
@@ -358,6 +418,11 @@ class BootstrapNavbarHelper extends AppHelper {
         
     }
     
+    /**
+     * 
+     * Extract options from $options, returning $default if $key is not found.
+     * 
+     **/
     private function _extractOption ($key, $options, $default = null) {
         if (isset($options[$key])) {
             return $options[$key] ;
@@ -365,6 +430,11 @@ class BootstrapNavbarHelper extends AppHelper {
         return $default ;
     }
     
+    /**
+     * 
+     * Add $class class to $options and return it.
+     * 
+     **/
     private function _addClass ($options, $class) {
         if (!isset($options['class'])) {
             $options['class'] = $class ;
@@ -375,6 +445,11 @@ class BootstrapNavbarHelper extends AppHelper {
         return $options ;
     }
     
+    /**
+     * 
+     * Extract navbar values from $options.
+     * 
+     **/
     private function _extractValue ($options) {
         $value = array () ;
         $value['pull'] = $this->_extractOption('pull', $options, 'auto') ;
@@ -387,6 +462,11 @@ class BootstrapNavbarHelper extends AppHelper {
         return $value ;
     }
     
+    /**
+     * 
+     * Add navbar block to current nav (navs, dropdownMenu, hoverMenu).
+     * 
+     **/
     private function _addToCurrent ($type, $value, $options = array()) {
         $value = array_merge($this->_extractValue($options), $value) ;
         $value['type'] = $type ;
