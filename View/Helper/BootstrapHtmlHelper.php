@@ -60,6 +60,50 @@ class BootstrapHtmlHelper extends HtmlHelper {
     public function icon ($icon, $color = 'black') {
         return '<i class="icon-'.$icon.' icon-'.$color.'"></i>' ; 
     }
+    
+    /**
+     *
+     * Create a Twitter Bootstrap span label.
+     * 
+     * @param text The label text
+     * @param options Options for span
+     *
+     * Extra options
+     *  - type The type of the label
+     *
+    **/
+    public function label ($text, $options = array()) {
+        $type = $this->_extractType($options, 'type', $default = 'default',
+                    array('default', 'success', 'warning', 'info', 'important', 'inverse')) ;
+        unset ($options['type']) ;
+        $options = $this->addClass($options, 'label') ;
+        if ($type !== 'default') {
+            $options = $this->addClass($options, 'label-'.$type) ;
+        }
+        return $this->tag('span', $text, $options) ;
+    }
+    
+    /**
+     *
+     * Create a Twitter Bootstrap span badge.
+     * 
+     * @param text The badge text
+     * @param options Options for span
+     *
+     * Extra options
+     *  - type The type of the badge
+     *
+    **/
+    public function badge ($text, $options = array()) {
+        $type = $this->_extractType($options, 'type', $default = 'default',
+                    array('default', 'success', 'warning', 'info', 'important', 'inverse')) ;
+        unset ($options['type']) ;
+        $options = $this->addClass($options, 'badge') ;
+        if ($type !== 'default') {
+            $options = $this->addClass($options, 'badge-'.$type) ;
+        }
+        return $this->tag('span', $text, $options) ;
+    }
 
     /**
      * 
