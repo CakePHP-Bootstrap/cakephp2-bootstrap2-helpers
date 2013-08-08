@@ -119,7 +119,7 @@ class BootstrapNavbarHelper extends AppHelper {
      * Add a divider to the navbar or to a menu.
      * 
     **/
-    public function divider ()) {
+    public function divider () {
         $this->_addToCurrent('divider', array(), array()) ;
     }
 
