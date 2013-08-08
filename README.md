@@ -1,7 +1,7 @@
 cakephp-bootstrap-helpers
 =========================
 
-CakePHP Helpers to generate HTML with @Twitter Boostrap style.
+CakePHP Helpers to generate HTML with @Twitter Boostrap style (version 2.3).
 
 It's a work in progress, if you want to add any kind of bootstrap components, just do it!
 
