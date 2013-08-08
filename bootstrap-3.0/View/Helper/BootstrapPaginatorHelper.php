@@ -107,8 +107,7 @@ class BootstrapPaginatorHelper extends PaginatorHelper {
      * @param $options Options for link element
      *
      * Extra options:
-     *  - alignment left/center/right (default center)
-     *  - size mini/small/normal/large (default normal)
+     *  - size small/normal/large (default normal)
      *       
     **/
     public function numbers ($options = array()) {
@@ -119,28 +118,24 @@ class BootstrapPaginatorHelper extends PaginatorHelper {
             'separator' => '', 
             'currentClass' => 'active', 
             'disabledTag' => 'a',
-            'size' => 'normal',
-            'alignment' => 'center') ;
+            'size' => 'normal') ;
         $options = array_merge($default, $options) ;
         
         $size = $options['size'] ; unset($options['size']) ;
-        $alignment = $options['alignment'] ; unset($options['alignment']) ;
         
         $class = 'pagination' ;
         
-        if ($size !== 'normal') {
-            $class .= ' pagination-'.$size ;
-        }
-        
-        if ($alignment !== 'left') {
-            $class .= ' pagination-'.$alignment ;
-            if ($alignment === 'center') {
-                $class .= 'ed' ;
-            }
+        switch ($size) {
+        case 'small':
+            $class .= ' pagination-sm' ;
+            break ;
+        case 'large':
+            $class .= ' pagination-lg' ;
+            break ;
         }
           
-        $options['before'] = '<div class="'.$class.'"><ul>' ;
-        $options['after'] = '</ul></div>' ;
+        $options['before'] = '<ul class="'.$class.'">' ;
+        $options['after'] = '</ul>' ;
                 
         return parent::numbers ($options) ;
     }
