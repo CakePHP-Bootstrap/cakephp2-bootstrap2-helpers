@@ -267,7 +267,7 @@ class BootstrapNavbarHelper extends AppHelper {
         $class = '' ;
         switch ($nav['type']) {
         case 'text':
-            $nav['options'] = $this->_addClass($nav['options'], 'navbar-text') ;
+            $nav['options'] = $this->addClass($nav['options'], 'navbar-text') ;
             $inner = $this->Html->tag($nav['wrap'], $nav['text'], $nav['options']) ;
         break ;
         case 'link':
@@ -332,7 +332,7 @@ class BootstrapNavbarHelper extends AppHelper {
             $res = $this->compileNavBlock($m) ;
             if ($res['active']) {
                 $active = true ;
-                $res = $this->_addClass($res, 'active') ;
+                $res = $this->addClass($res, 'active') ;
             }
             $link[] = $this->Html->tag('li', $res['inner'], $res['class'] ? array('class' => $res['class']) : array()) ;
         }
@@ -386,10 +386,10 @@ class BootstrapNavbarHelper extends AppHelper {
             $res = $this->compileNavBlock($nav) ;
             $options = array('class' => $res['class']) ;
             if ($res['active']) {
-                $options = $this->_addClass($options, 'active') ;
+                $options = $this->addClass($options, 'active') ;
             }
             if ($res['disabled']) {
-                $options = $this->_addClass($options, 'disabled') ;
+                $options = $this->addClass($options, 'disabled') ;
             }
             $htmls[] = $this->Html->tag('li', $res['inner'], $options) ;
         }
@@ -399,15 +399,15 @@ class BootstrapNavbarHelper extends AppHelper {
         }
         
         /** Generate options for outer div. **/
-        $this->options = $this->_addClass($this->options, 'navbar') ;
+        $this->options = $this->addClass($this->options, 'navbar') ;
         if ($this->fixed !== false) {
-            $this->options = $this->_addClass($this->options, 'navbar-fixed-'.$this->fixed) ;
+            $this->options = $this->addClass($this->options, 'navbar-fixed-'.$this->fixed) ;
         }
         else if ($this->static !== false) {
-            $this->options = $this->_addClass($this->options, 'navbar-static-top') ;
+            $this->options = $this->addClass($this->options, 'navbar-static-top') ;
         }
         if ($this->inverse !== false) {
-            $this->options = $this->_addClass($this->options , 'navbar-inverse') ;
+            $this->options = $this->addClass($this->options , 'navbar-inverse') ;
         }
         
         $inner = '' ;
@@ -463,21 +463,6 @@ class BootstrapNavbarHelper extends AppHelper {
             return $options[$key] ;
         }
         return $default ;
-    }
-    
-    /**
-     * 
-     * Add $class class to $options and return it.
-     * 
-    **/
-    private function _addClass ($options, $class) {
-        if (!isset($options['class'])) {
-            $options['class'] = $class ;
-        }
-        else {
-            $options['class'] .= ' '.$class ;
-        }
-        return $options ;
     }
     
     /**
