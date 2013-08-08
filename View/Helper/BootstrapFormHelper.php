@@ -340,7 +340,7 @@ class BootstrapFormHelper extends FormHelper {
             'label' => $label,
             'placeholder' => $placeholder,
             'append' => array(
-                $this->button($button)
+                $this->button($button, array('style' => 'vertical-align: middle'))
             )
         )) ;
         $output .= $this->end() ;

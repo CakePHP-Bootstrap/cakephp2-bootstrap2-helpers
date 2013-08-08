@@ -145,6 +145,53 @@ class BootstrapNavbarHelper extends AppHelper {
     }
     
     /**
+     *
+     * Add a HTML block to the navbar.
+     *
+     * @param block The HTML block to add
+     *
+     * Extra options:
+     *  - list true/false (default true), specify if block should be wrap in a "li" tag, only
+     *      work on main nav (in submenu, block are always wrapped in a li tag)
+     *
+    **/
+    public function block ($block, $options = array()) {
+        $list = $this->_extractOption('list', $options, true) ;
+        unset ($options['list']) ;
+        $value = array(
+            'text' => $block,
+            'list' => $list
+        ) ;
+        $this->_addToCurrent('block', $value, $options) ;
+    }
+    
+    /**
+     *
+     * Add a serach form to the navbar.
+     *
+     * @param block The HTML block to add
+     * @param options
+     *
+     * Extra options:
+     *  - form Extra options for BootstrapFormHelper::searchForm options
+     *  - pull left/right (default left)
+     *  - model Model for BootstrapFormHelper::searchForm method
+     *
+    **/
+    public function searchForm ($options = array()) {
+        App::import('Helper', 'BootstrapForm') ;
+        $bootFormHelper = new BootstrapFormHelper($this->_View);
+        $formOptions = $this->_extractOption('form', $options, array()) ;
+        unset($formOptions['form']) ;
+        $pull = $this->_extractOption('pull', $options, 'left') ;
+        unset($options['pull']) ;
+        $model = $this->_extractOption('model', $options, null) ;
+        unset($options['model']) ;
+        $formOptions = $this->addClass($formOptions, 'navbar-form pull-'.$pull) ;
+        $this->block($bootFormHelper->searchForm($model, $formOptions), array('list' => false)) ;
+    }
+    
+    /**
      * 
      * Start a new menu, 2 levels: If not in submenu, create a dropdown menu,
      * oterwize create hover menu.
@@ -225,7 +272,7 @@ class BootstrapNavbarHelper extends AppHelper {
         break ;
         case 'link':
             $active = $nav['active'] === 'auto' ? 
-                Router::currentRoute()->match(Router::parse(Router::normalize($nav['url']))) : $nav['active'] ;
+                Router::url() === Router::normalize($nav['url']) : $nav['active'] ;
             $disabled = $nav['disabled'] ;
             $inner = $this->Html->link($nav['text'], $nav['url'], $nav['options']) ;
         break ;
@@ -237,6 +284,9 @@ class BootstrapNavbarHelper extends AppHelper {
             $disabled = $nav['disabled'] ;
             $class = $res['class'];
         break ;
+        case 'block':
+            $inner = $nav['text'] ;
+            break ;
         case 'divider':
             $class = 'divider' ;
         break ;
@@ -311,6 +361,15 @@ class BootstrapNavbarHelper extends AppHelper {
         $htmls = array() ;
         $ul = false ;
         foreach ($this->navs as $nav) {
+            /* Extra check for block... */
+            if ($nav['type'] === 'block' && $nav['list'] === false) {
+                if ($ul) {
+                    $htmls[] = '</ul>' ;
+                    $ul = false ;
+                }
+                $htmls[] = $nav['text'] ;
+                continue ;
+            }
             if ($ul && $nav['pull'] != 'auto' && $nav['pull'] != $ul) {
                 $htmls[] = '</ul>' ;
                 $ul = false ;
