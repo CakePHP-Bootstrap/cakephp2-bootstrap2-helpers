@@ -105,6 +105,10 @@ class BootstrapPaginatorHelper extends PaginatorHelper {
      * Get pagination link list.
      * 
      * @param $options Options for link element
+     *
+     * Extra options:
+     *  - alignment left/center/right (default center)
+     *  - size mini/small/normal/large (default normal)
      *       
     **/
     public function numbers ($options = array()) {
@@ -114,8 +118,26 @@ class BootstrapPaginatorHelper extends PaginatorHelper {
             'currentTag' => 'a', 
             'separator' => '', 
             'currentClass' => 'active', 
-            'disabledTag' => 'a') ;
+            'disabledTag' => 'a',
+            'size' => 'normal',
+            'alignment' => 'center') ;
         $options = array_merge($default, $options) ;
+        
+        $size = $options['size'] ; unset($options['size']) ;
+        $alignment = $options['alignment'] ; unset($options['alignment']) ;
+        
+        $class = '' ;
+        
+        if ($size !== 'normal') {
+            $class .= ' pagination-'.$size ;
+        }
+        
+        if ($alignment !== 'left') {
+            $class .= ' pagination-'.$alignment ;
+            if ($alignment === 'center') {
+                $class .= 'ed' ;
+            }
+        }
           
         $options['before'] = '<div class="pagination"><ul>' ;
         $options['after'] = '</ul></div>' ;
