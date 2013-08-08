@@ -315,9 +315,10 @@ class BootstrapNavbarHelper extends AppHelper {
     **/
     private function compileMenu ($menu) {
         if ($menu['type'] === 'menu') {
-            $button = $this->Html->link($menu['text'], $menu['url'] ? $menu['url'] : '#', array(
+            $button = $this->Html->link($menu['text'].'<b class="caret"></b>', $menu['url'] ? $menu['url'] : '#', array(
                 'class' => 'dropdown-toggle',
-                'data-toggle' => 'dropdown'
+                'data-toggle' => 'dropdown',
+                'escape' => false
             )) ;
         }
         else {
