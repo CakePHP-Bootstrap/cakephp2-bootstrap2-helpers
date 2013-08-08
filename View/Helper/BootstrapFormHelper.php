@@ -236,6 +236,40 @@ class BootstrapFormHelper extends FormHelper {
     
     /**
      * 
+     * Create & return a Twitter Like button group.
+     * 
+     * @param $buttons The buttons in the group
+     * @param $options Options for div method
+     *
+     * Extra options:
+     *  - vertical true/false
+     * 
+    **/
+    public function buttonGroup ($buttons, $options = array()) {
+        $vertical = $this->_extractOption('vertical', $options, false) ;
+        unset($options['vertical']) ;
+        $options = $this->addClass($options, 'btn-group') ;
+        if ($vertical) {
+            $options = $this->addClass($options, 'btn-group-vertical') ;
+        }
+        return $this->Html->tag('div', implode('', $buttons), $options) ;
+    }
+    
+    /**
+     * 
+     * Create & return a Twitter Like button toolbar.
+     * 
+     * @param $buttons The groups in the toolbar
+     * @param $options Options for div method
+     * 
+    **/
+    public function buttonToolbar ($buttonGroups, $options = array()) {
+        $options = $this->addClass($options, 'btn-toolbar') ;
+        return $this->Html->tag('div', implode('', $buttonGroups), $options) ;
+    }
+    
+    /**
+     * 
      * Create & return a twitter bootstrap dropdown button.
      * 
      * @param $title The text in the button
