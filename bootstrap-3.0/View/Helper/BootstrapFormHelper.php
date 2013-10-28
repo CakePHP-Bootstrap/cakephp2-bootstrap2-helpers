@@ -207,7 +207,7 @@ class BootstrapFormHelper extends FormHelper {
             $options['label'] = false ;
         }
         if ($prepend) {
-            $beforeClass .= ' input-prepend' ;
+            $beforeClass .= ' input-group input-prepend' ;
             if (is_string($prepend)) {
                 $before .= '<span class="add-on">'.$prepend.'</span>' ;
             }
@@ -218,7 +218,7 @@ class BootstrapFormHelper extends FormHelper {
             }
         }
         if ($append) {
-            $beforeClass .= ' input-append' ;
+            $beforeClass .= ' input-group input-append' ;
             if (is_string($append)) {
                 $between = '<span class="add-on">'.$append.'</span>'.$between ;
             }
