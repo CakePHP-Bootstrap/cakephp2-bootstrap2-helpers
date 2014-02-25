@@ -1,7 +1,7 @@
+<em>New! Repository for bootstrap v3 available here: https://github.com/Holt59/cakephp-bootstrap3-helpers</em>
+
 cakephp-bootstrap-helpers
 =========================
-
-<em>New! Repository for bootstrap v3 available here: https://github.com/Holt59/cakephp-bootstrap3-helpers</em>
 
 CakePHP Helpers to generate HTML with @Twitter Boostrap style (version 2.3).
 
