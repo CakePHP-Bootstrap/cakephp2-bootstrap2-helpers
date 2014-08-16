@@ -13,7 +13,7 @@ How to use?
 Just add Helper files into your View/Helpers directory and load the helpers in you controller:
 ```php
 public $helpers = array(
-    'Html= > 'BoostrapHtml', 
+    'Html' => 'BoostrapHtml', 
     'Form' => 'BootstrapForm', 
     'Paginator' => 'BoostrapPaginator',
     'Navbar' => 'BootstrapNavbar'
