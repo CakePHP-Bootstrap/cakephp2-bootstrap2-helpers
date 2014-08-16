@@ -1,18 +1,24 @@
 <em>New! Repository for bootstrap v3 available here: https://github.com/Holt59/cakephp-bootstrap3-helpers</em>
-cakephp-bootstrap-helpers
-=========================
 
-CakePHP Helpers to generate HTML with @Twitter Boostrap style (version 2.3).
+CakePHP 2.x Helpers for Bootstrap 2
+===================================
 
-It's a work in progress, if you want to add any kind of bootstrap components, just do it!
+CakePHP Helpers to generate HTML with @Twitter Boostrap 2 style.
 
-If you want a component but you don't really know how to do, do not hesitate to contact me!
+<i>**Warning:** This plugin version is not maintained anymore.</i>
 
 How to use?
 ===========
 
 Just add Helper files into your View/Helpers directory and load the helpers in you controller:
-```public $helpers = array('BoostrapHtml', 'BootstrapForm', 'BoostrapPaginator', 'BootstrapNavbar') ;```
+```php
+public $helpers = array(
+    'Html= > 'BoostrapHtml', 
+    'Form' => 'BootstrapForm', 
+    'Paginator' => 'BoostrapPaginator',
+    'Navbar' => 'BootstrapNavbar'
+) ;
+```
 
 I tried to keep CakePHP helpers style. You can find the documentation directly in the Helpers files.
 
@@ -21,22 +27,86 @@ BootstrapHtmlHelper
 
 This is the subclass of HtmlHelper, with 1 redefinition of method and 3 new methods:
 
-<h3>getCrumbLists</h3>
-Function now returns a bootstrap style breadcrumbs: http://getbootstrap.com/2.3.2/components.html#breadcrumbs
-  
-<h3>alert</h3>
-Function which returns a bootstrap alert message: http://getbootstrap.com/2.3.2/components.html#alerts 
+```php
+/**
+ * 
+ * Get crumb lists in a HTML list, with bootstrap like style.
+ *
+ * @param $options Options for list
+ * @param $startText Text to insert before list
+ * 
+ * Unusable options:
+ * 	- Separator
+**/
+public function getCrumbList($options = array(), $startText = null) ;
 
-<h3>icon</h3> 
-Function which returns a boostrap icon.
+/**
+ *  
+ * Create a Twitter Bootstrap style alert block, containing text.
+ *  
+ * @param $text The alert text
+ * @param $options Options that will be passed to Html::div method
+ * 
+ * 
+ * Available BootstrapHtml options:
+ * 	- block: boolean, specify if alert should have 'alert-block' class
+ * 	- type: string, type of alert (default, error, info, success)
+ *     
+**/
+public function alert ($text, $options = array()) 
 
-<h3>progress</h3>
-Function which returns a boostrap progress bar.
+/**
+ * 
+ * Create a Twitter Bootstrap icon.
+ * 
+ * @param $icon The type of the icon (search, pencil, etc.)
+ * @param $color The color of the icon (black or white)
+ * 
+**/
+public function icon ($icon, $color = 'black') 
+    
+/**
+ *
+ * Create a Twitter Bootstrap span label.
+ * 
+ * @param text The label text
+ * @param options Options for span
+ *
+ * Extra options
+ *  - type The type of the label
+ *
+**/
+public function label ($text, $options = array()) 
 
-BootstrapPaginatorHelper
-========================
+/**
+ *
+ * Create a Twitter Bootstrap span badge.
+ * 
+ * @param text The badge text
+ * @param options Options for span
+ *
+ * Extra options
+ *  - type The type of the badge
+ *
+**/
+public function badge ($text, $options = array())
 
-Currently this helper only redefines numbers, first, last, prev & next method of PaginatorHelper to create boostrap like pagination: http://getbootstrap.com/2.3.2/components.html#pagination
+/**
+ * 
+ * Create a Twitter Bootstrap style progress bar.
+ * 
+ * @param $widths 
+ * 	- The width (in %) of the bar
+ * 	- An array of bar, with width and type (info, danger, success, warning) specified for each bar
+ * @param $options Options that will be passed to Html::div method (only for main div)
+ *  
+ * Available BootstrapHtml options:
+ * 	- striped: boolean, specify if progress bar should be striped
+ * 	- active: boolean, specify if progress bar should be active
+ *     
+**/
+public function progress ($widths, $options = array()) 
+```
 
 BootstrapFormHelper
 ===================
@@ -54,7 +124,7 @@ Two new methods:
 2. searchForm which allow you to quickly create a search form (see documentation)
 
 A small example:
-```
+```php
 echo $this->BootstrapForm->create('', array()) ;
 echo $this->BootstrapForm->input('text', array(
     'label' => 'Search... ',
@@ -69,37 +139,35 @@ echo $this->BootstrapForm->input('text', array(
             ))
     ))) ;
 echo $this->BootstrapForm->end() ;
+```
 
-/**
-    Will output: 
+Will output:
 
-    <form>
-        <div style="display:none;">
-            <input type="hidden" name="_method" value="POST">
-        </div>
-        <div class="control-group">
-            <label for="ArticleText" class="control-label">Search... </label>
-            <div class=" input-prepend input-append">
-                <span class="add-on"><i class="icon-search icon-black"></i></span>
-                <input name="data[Article][text]" type="text" id="ArticleText">
-                <div class="btn-group">
-                    <button data-toggle="dropdown" class="dropdown-toggle btn">
-                        Action
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action 1</a></li>
-                        <li><a href="#">Action 2</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Action 3</a></li>
-                    </ul>
-                </div>
+```html
+<form>
+    <div style="display:none;">
+        <input type="hidden" name="_method" value="POST">
+    </div>
+    <div class="control-group">
+        <label for="ArticleText" class="control-label">Search... </label>
+        <div class=" input-prepend input-append">
+            <span class="add-on"><i class="icon-search icon-black"></i></span>
+            <input name="data[Article][text]" type="text" id="ArticleText">
+            <div class="btn-group">
+                <button data-toggle="dropdown" class="dropdown-toggle btn">
+                    Action
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Action 1</a></li>
+                    <li><a href="#">Action 2</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Action 3</a></li>
+                </ul>
             </div>
         </div>
-    </form>
-    
-**/
-
+    </div>
+</form>
 ```
 
 BootstrapNavbarHelper
